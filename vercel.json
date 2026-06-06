@@ -2,29 +2,29 @@
   "version": 2,
   "functions": {
     "api/index.php": {
-      "runtime": "vercel-php@0.8.0"
+      "runtime": "vercel-php"
     }
   },
-  "rewrites": [
+  "routes": [
     {
-      "source": "/tiket",
-      "destination": "/tiket/tiket.html"
+      "src": "/tiket",
+      "dest": "/tiket/tiket.html"
     },
     {
-      "source": "/tiket/",
-      "destination": "/tiket/tiket.html"
+      "src": "/tiket/",
+      "dest": "/tiket/tiket.html"
     },
     {
-      "source": "/index",
-      "destination": "/"
+      "src": "/index",
+      "dest": "/api/index.php"
     },
     {
-      "source": "/index/index.php",
-      "destination": "/"
+      "src": "/index/index.php",
+      "dest": "/api/index.php"
     },
     {
-      "source": "/(.*)",
-      "destination": "/api/index.php"
+      "src": "/(.*)",
+      "dest": "/api/index.php"
     }
   ]
 }
