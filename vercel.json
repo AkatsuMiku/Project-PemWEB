@@ -2,12 +2,7 @@
   "version": 2,
   "functions": {
     "api/index.js": {
-      "includeFiles": [
-        "index/**",
-        "tiket/**",
-        "assets/**",
-        "PHOTO/**"
-      ]
+      "includeFiles": "{index,tiket,assets,PHOTO}/**"
     }
   },
   "rewrites": [
