@@ -48,7 +48,16 @@
                     <div class="collapse navbar-collapse" id="navbarNav">
                         <ul class="navbar-nav ms-auto align-items-center">
                             <li class="nav-item"><a class="nav-link" href="/api/index.php">Utama</a></li>
-                            <li class="nav-item"><a class="nav-link" href="/api/tiket.php">Beli Tiket</a></li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" data-bs-display="static">
+                                    Sosial Media Pengembang
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-end border-0 shadow-lg" aria-labelledby="navbarDropdown" style="border-radius: 12px; min-width: 200px;">
+                                    <li><a class="dropdown-item py-2" href="https://instagram.com" target="_blank"><i class="fab fa-instagram me-2 text-danger"></i>Instagram</a></li>
+                                    <li><a class="dropdown-item py-2" href="https://github.com" target="_blank"><i class="fab fa-github me-2 text-dark"></i>GitHub</a></li>
+                                    <li><a class="dropdown-item py-2" href="https://facebook.com" target="_blank"><i class="fab fa-facebook me-2 text-primary"></i>Facebook</a></li>
+                                </ul>
+                            </li>
                             <li class="nav-item"><a class="nav-link" href="#">Bantuan</a></li>
                             <li class="nav-item ms-lg-3">
                                 <a href="" class="btn btn-outline-primary rounded-pill px-4 me-2 mb-2 mb-lg-0">Sign in</a>
@@ -108,17 +117,26 @@
             </div>
         </div>
 
+        <!-- DOCK SECTION: INTERESTED IN KAWAH IJEN -->
+        <div class="row justify-content-center my-4">
+            <div class="col-11 col-md-8 col-lg-7">
+                <div class="interest-dock d-flex justify-content-between align-items-center gap-2 px-4 py-3">
+                    <span class="interest-text m-0">Tertarik dengan Kawah Ijen?</span>
+                    <a href="/api/tiket.php" class="btn btn-primary btn-dock-action">Beli Tiket</a>
+                </div>
+            </div>
+        </div>
+
         <!-- CARDS -->
         <div class="container my-5">
             <div class="row justify-content-center g-4">
                 <?php foreach ($wisata_kawahijen as $wisata) : ?>
-                    <div class="col-auto">
-                        <div class="card" style="width: 18rem;">
+                    <div class="col-6 col-md-4 col-lg-3 d-flex align-items-stretch">
+                        <div class="card w-100">
                             <img src="<?php echo htmlspecialchars($wisata["img"]); ?>" class="card-img-top" alt="<?php echo htmlspecialchars($wisata["title"]); ?>">
                             <div class="card-body d-flex flex-column">
                                 <h5 class="card-title"><?php echo htmlspecialchars($wisata["title"]); ?></h5>
-                                <p class="card-text"><?php echo htmlspecialchars($wisata["deskripsi"]); ?></p>
-                                <a href="/api/tiket.php" class="btn btn-primary mt-auto">Beli Tiket</a>
+                                <p class="card-text mb-0"><?php echo htmlspecialchars($wisata["deskripsi"]); ?></p>
                             </div>
                         </div>
                     </div>
