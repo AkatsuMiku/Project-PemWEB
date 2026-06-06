@@ -28,7 +28,8 @@
                                 <li class="nav-item"><a class="nav-link" href="/tiket">Beli Tiket</a></li>
                                 <li class="nav-item"><a class="nav-link" href="#">Bantuan</a></li>
                                 <li class="nav-item ms-lg-3">
-                                    <a href="" class="btn btn-outline-primary rounded-pill px-4 me-2 mb-2 mb-lg-0">Sign in</a>
+                                    <a href="" class="btn btn-outline-primary rounded-pill px-4 me-2 mb-2 mb-lg-0">Sign
+                                        in</a>
                                     <a href="" class="btn btn-primary rounded-pill px-4">Sign up</a>
                                 </li>
                             </ul>
@@ -38,80 +39,83 @@
             </div>
         </div>
         <div class="row">
-            <div class="col">
-                <div class="container mt-5">
-                    <h2 class="mb-4 text-center">Jadwal Acara & Pemesanan Tiket</h2>
+            <div class="col text-center mt-5">
+                <h2 class="page-title">Jadwal Acara & Pemesanan Tiket</h2>
+            </div>
+        </div>
+        
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="table-card">
                     <div class="table-responsive">
-                        <table class="table table-hover align-middle border">
-                        <thead class="table-dark">
-                            <tr>
-                            <th scope="col" style="width: 15%;">Tanggal & Waktu</th>
-                            <th scope="col" style="width: 35%;">Nama Acara / Rute</th>
-                            <th scope="col" style="width: 15%;">Kategori / Kelas</th>
-                            <th scope="col" style="width: 15%;">Harga</th>
-                            <th scope="col" style="width: 20%;" class="text-center">Aksi</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                            <td>
-                                <strong>12 Jun 2026</strong><br>
-                                <small class="text-muted">19:30 WIB</small>
-                            </td>
-                            <td>
-                                <h6 class="mb-0">Konser Musik Seni Rock Kebangsaan</h6>
-                                <small class="text-muted">Stadion Utama Gelora Bung Karno</small>
-                            </td>
-                            <td><span class="badge bg-success">VIP Frontrow</span></td>
-                            <td><strong class="text-danger">Rp 1.500.000</strong></td>
-                            <td class="text-center">
-                                <button class="btn btn-primary btn-sm w-100" type="button">Pesan Tiket</button>
-                            </td>
-                            </tr>
-                            <tr>
-                            <td>
-                                <strong>15 Jun 2026</strong><br>
-                                <small class="text-muted">13:00 WIB</small>
-                            </td>
-                            <td>
-                                <h6 class="mb-0">Seminar Teknologi Masa Depan AI</h6>
-                                <small class="text-muted">Auditorium Menara Merdeka</small>
-                            </td>
-                            <td><span class="badge bg-secondary">Reguler</span></td>
-                            <td><strong>Rp 250.000</strong></td>
-                            <td class="text-center">
-                                <button class="btn btn-secondary btn-sm w-100" disabled type="button">Habis Terjual</button>
-                            </td>
-                            </tr>
-                            <tr>
-                            <td>
-                                <strong>20 Jun 2026</strong><br>
-                                <small class="text-muted">20:00 WIB</small>
-                            </td>
-                            <td>
-                                <h6 class="mb-0">Pertunjukan Teater Musikal Nusantara</h6>
-                                <small class="text-muted">Gedung Kesenian Jakarta</small>
-                            </td>
-                            <td><span class="badge bg-warning text-dark">Festival (Berdiri)</span></td>
-                            <td><strong class="text-danger">Rp 450.000</strong></td>
-                            <td class="text-center">
-                                <button class="btn btn-primary btn-sm w-100" type="button">Pesan Tiket</button>
-                            </td>
-                            </tr>
-                        </tbody>
+                        <table class="table custom-table align-middle">
+                            <thead>
+                                <tr>
+                                    <th scope="col" style="width: 20%;">Tanggal & Waktu</th>
+                                    <th scope="col" style="width: 40%;">Nama Acara / Rute</th>
+                                    <th scope="col" style="width: 15%;">Kategori / Kelas</th>
+                                    <th scope="col" style="width: 15%;">Harga</th>
+                                    <th scope="col" style="width: 10%;" class="text-center">Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <strong>12 Jun 2026</strong><br>
+                                        <small class="text-muted">19:30 WIB</small>
+                                    </td>
+                                    <td>
+                                        <h6 class="mb-1 text-dark">Konser Musik Seni Rock Kebangsaan</h6>
+                                        <small class="text-muted"><i class="fas fa-map-marker-alt me-1"></i>Stadion Utama Gelora Bung Karno</small>
+                                    </td>
+                                    <td><span class="badge-custom badge-vip">VIP Frontrow</span></td>
+                                    <td><strong class="text-primary">Rp 1.500.000</strong></td>
+                                    <td class="text-center">
+                                        <a href="#" class="btn-book">Pesan</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <strong>15 Jun 2026</strong><br>
+                                        <small class="text-muted">13:00 WIB</small>
+                                    </td>
+                                    <td>
+                                        <h6 class="mb-1 text-dark">Seminar Teknologi Masa Depan AI</h6>
+                                        <small class="text-muted"><i class="fas fa-map-marker-alt me-1"></i>Auditorium Menara Merdeka</small>
+                                    </td>
+                                    <td><span class="badge-custom badge-reguler">Reguler</span></td>
+                                    <td><strong class="text-dark">Rp 250.000</strong></td>
+                                    <td class="text-center">
+                                        <button class="btn-soldout" disabled>Habis</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <strong>20 Jun 2026</strong><br>
+                                        <small class="text-muted">20:00 WIB</small>
+                                    </td>
+                                    <td>
+                                        <h6 class="mb-1 text-dark">Pertunjukan Teater Musikal Nusantara</h6>
+                                        <small class="text-muted"><i class="fas fa-map-marker-alt me-1"></i>Gedung Kesenian Jakarta</small>
+                                    </td>
+                                    <td><span class="badge-custom badge-festival">Festival (Berdiri)</span></td>
+                                    <td><strong class="text-primary">Rp 450.000</strong></td>
+                                    <td class="text-center">
+                                        <a href="#" class="btn-book">Pesan</a>
+                                    </td>
+                                </tr>
+                            </tbody>
                         </table>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="col text-center my-5">
-            <h2>Pemesanan Tiket Kawah Ijen</h2>
-            <p class="text-muted">Formulir pemesanan tiket masuk Kawah Ijen akan segera hadir di sini.</p>
-            <a href="/" class="btn btn-primary rounded-pill px-4 mt-3">Kembali ke Utama</a>
+        
+        <div class="row my-5">
+            <div class="col text-center">
+                <a href="/" class="btn btn-outline-primary rounded-pill px-4">Kembali ke Utama</a>
+            </div>
         </div>
-    </div>
     <script src="/assets/BOOTSRAP/js/bootstrap.bundle.min.js"></script>
 </body>
 
