@@ -30,9 +30,9 @@
                                         Sosial Media Pengembang
                                     </a>
                                     <ul class="dropdown-menu dropdown-menu-end border-0 shadow-lg" aria-labelledby="navbarDropdown" style="border-radius: 12px; min-width: 200px;">
-                                        <li><a class="dropdown-item py-2" href="https://instagram.com" target="_blank"><i class="fab fa-instagram me-2 text-danger"></i>Instagram</a></li>
-                                        <li><a class="dropdown-item py-2" href="https://github.com" target="_blank"><i class="fab fa-github me-2 text-dark"></i>GitHub</a></li>
-                                        <li><a class="dropdown-item py-2" href="https://facebook.com" target="_blank"><i class="fab fa-facebook me-2 text-primary"></i>Facebook</a></li>
+                                        <li><a class="dropdown-item py-2" href="https://www.instagram.com/h3ru4ever?igsh=MXF6dGMxYmtzZGhjeQ==" target="_blank"><i class="fab fa-instagram me-2 text-danger"></i>Instagram</a></li>
+                                        <li><a class="dropdown-item py-2" href="https://www.tiktok.com/@akatsumiku?_r=1&_t=ZS-96zoy9IpkSi" target="_blank"><i class="fab fa-tiktok me-2 text-dark"></i>TikTok</a></li>
+                                        <li><a class="dropdown-item py-2" href="https://github.com/AkatsuMiku" target="_blank"><i class="fab fa-github me-2 text-dark"></i>GitHub</a></li>
                                     </ul>
                                 </li>
                                 <li class="nav-item"><a class="nav-link" href="#">Bantuan</a></li>
