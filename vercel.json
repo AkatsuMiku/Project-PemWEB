@@ -3,6 +3,9 @@
   "functions": {
     "api/index.php": {
       "runtime": "vercel-php@0.7.3"
+    },
+    "tiket/tiket.php": {
+      "runtime": "vercel-php@0.7.3"
     }
   },
   "routes": [
@@ -11,11 +14,11 @@
     },
     {
       "src": "/tiket",
-      "dest": "/tiket/tiket.html"
+      "dest": "/tiket/tiket.php"
     },
     {
       "src": "/tiket/",
-      "dest": "/tiket/tiket.html"
+      "dest": "/tiket/tiket.php"
     },
     {
       "src": "/index",
