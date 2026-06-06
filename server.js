@@ -5,18 +5,18 @@ const PORT = 3000;
 
 // Set EJS as view engine and set views folder to root of node-app
 app.set('view engine', 'ejs');
-app.set('views', __dirname);
+app.set('views', process.cwd());
 
 // Ticket page route
 app.get(['/tiket', '/tiket/'], (req, res) => {
-    res.sendFile(path.join(__dirname, 'tiket', 'tiket.html'));
+    res.sendFile(path.join(process.cwd(), 'tiket', 'tiket.html'));
 });
 
 // Serve static assets from node-app
-app.use('/assets', express.static(path.join(__dirname, 'assets')));
-app.use('/PHOTO', express.static(path.join(__dirname, 'PHOTO')));
-app.use('/index', express.static(path.join(__dirname, 'index')));
-app.use('/tiket', express.static(path.join(__dirname, 'tiket')));
+app.use('/assets', express.static(path.join(process.cwd(), 'assets')));
+app.use('/PHOTO', express.static(path.join(process.cwd(), 'PHOTO')));
+app.use('/index', express.static(path.join(process.cwd(), 'index')));
+app.use('/tiket', express.static(path.join(process.cwd(), 'tiket')));
 
 // Home page route (renders index/index.ejs)
 app.get('/', (req, res) => {
@@ -53,6 +53,10 @@ app.get('/index/index.php', (req, res) => {
     res.redirect('/');
 });
 
-app.listen(PORT, () => {
-    console.log(`Server is running at http://localhost:${PORT}`);
-});
+if (require.main === module) {
+    app.listen(PORT, () => {
+        console.log(`Server is running at http://localhost:${PORT}`);
+    });
+}
+
+module.exports = app;
