@@ -1,0 +1,187 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap');
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #f8fafc;
+}
+
+h2, h3, h4, h5, h6, .navbar-brand {
+    font-family: 'Outfit', sans-serif;
+}
+
+/* 3D Navbar (matches homepage) */
+.navbar {
+    background-color: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08) !important;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+}
+
+.navbar-brand {
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+/* macOS Window-style Table Container */
+.table-responsive {
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-radius: 24px;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    box-shadow: 
+        0 30px 70px rgba(0, 0, 0, 0.15), 
+        0 10px 30px rgba(0, 0, 0, 0.05), 
+        inset 0 1px 0 rgba(255, 255, 255, 0.6);
+    padding: 24px;
+    margin: 30px 0;
+    transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.table-responsive:hover {
+    transform: translateY(-5px);
+    box-shadow: 
+        0 40px 90px rgba(0, 0, 0, 0.2), 
+        0 15px 40px rgba(0, 0, 0, 0.08), 
+        inset 0 1px 0 rgba(255, 255, 255, 0.7);
+}
+
+/* Custom Table Style */
+.custom-table {
+    border-collapse: separate;
+    border-spacing: 0 12px; /* Adds space between rows */
+    margin-bottom: 0;
+}
+
+.custom-table thead th {
+    border: none;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 600;
+    color: #64748b;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+    padding: 12px 20px;
+}
+
+.custom-table tbody tr {
+    background: #ffffff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.02);
+    border-radius: 12px;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.custom-table tbody tr:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.06);
+    background-color: #fcfdfe;
+}
+
+.custom-table tbody td {
+    padding: 20px;
+    border: none;
+    background: transparent;
+}
+
+/* Rounding corners of the table rows */
+.custom-table tbody tr td:first-child {
+    border-top-left-radius: 16px;
+    border-bottom-left-radius: 16px;
+    border-left: 1px solid rgba(0, 0, 0, 0.03);
+}
+
+.custom-table tbody tr td:last-child {
+    border-top-right-radius: 16px;
+    border-bottom-right-radius: 16px;
+    border-right: 1px solid rgba(0, 0, 0, 0.03);
+}
+
+.custom-table tbody tr td {
+    border-top: 1px solid rgba(0, 0, 0, 0.03);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.03);
+}
+
+/* Badges */
+.badge-custom {
+    padding: 8px 14px;
+    border-radius: 30px;
+    font-weight: 600;
+    font-size: 0.75rem;
+    letter-spacing: 0.3px;
+    display: inline-block;
+}
+
+.badge-vip {
+    background-color: #e0f2fe;
+    color: #0369a1;
+    border: 1px solid rgba(3, 105, 161, 0.15);
+}
+
+.badge-reguler {
+    background-color: #f1f5f9;
+    color: #475569;
+    border: 1px solid rgba(71, 85, 105, 0.15);
+}
+
+.badge-festival {
+    background-color: #fef3c7;
+    color: #b45309;
+    border: 1px solid rgba(180, 83, 9, 0.15);
+}
+
+/* Buttons (3D Theme) */
+.btn-book {
+    background: linear-gradient(145deg, #0d6efd, #0b5ed7);
+    border: none;
+    color: white !important;
+    font-weight: 600;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(13, 110, 253, 0.3);
+    padding: 10px 20px;
+    transition: all 0.2s ease;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.btn-book:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(13, 110, 253, 0.4);
+    background: linear-gradient(145deg, #0b5ed7, #0a53be);
+}
+
+.btn-book:active {
+    transform: translateY(1px);
+    box-shadow: 0 2px 5px rgba(13, 110, 253, 0.3);
+}
+
+.btn-soldout {
+    background-color: #e2e8f0;
+    color: #94a3b8;
+    border: 1px solid #cbd5e1;
+    font-weight: 600;
+    border-radius: 12px;
+    padding: 10px 20px;
+    cursor: not-allowed;
+    display: inline-block;
+    text-decoration: none;
+}
+
+/* Page Title Style */
+.page-title {
+    font-weight: 800;
+    color: #0f172a;
+    letter-spacing: -0.5px;
+    margin-bottom: 8px;
+    position: relative;
+    display: inline-block;
+}
+
+.page-title::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 4px;
+    background: #0d6efd;
+    border-radius: 2px;
+    margin: 12px auto 0 auto;
+}
