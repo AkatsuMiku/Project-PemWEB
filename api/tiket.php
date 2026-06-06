@@ -25,7 +25,7 @@
                         <div class="collapse navbar-collapse" id="navbarNav">
                             <ul class="navbar-nav ms-auto align-items-center">
                                 <li class="nav-item"><a class="nav-link" href="/api/index.php">Utama</a></li>
-                                <li class="nav-item"><a class="nav-link" href="/tiket/tiket.php">Beli Tiket</a></li>
+                                <li class="nav-item"><a class="nav-link" href="/api/tiket.php">Beli Tiket</a></li>
                                 <li class="nav-item"><a class="nav-link" href="#">Bantuan</a></li>
                                 <li class="nav-item ms-lg-3">
                                     <a href="" class="btn btn-outline-primary rounded-pill px-4 me-2 mb-2 mb-lg-0">Sign
