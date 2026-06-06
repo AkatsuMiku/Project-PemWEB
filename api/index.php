@@ -9,6 +9,31 @@
     <title>Explore Kawah Ijen</title>
 </head>
 <body>
+    <?php
+    $wisata_kawahijen = [
+        [
+            "title" => "Melihat Keindahan kawah ijen",
+            "deskripsi" => "Nikmati pemandangan kawah vulkanik dengan danau asam berwarna toska yang memukau.",
+            "img" => "/PHOTO/ijen_volcano.jpg",
+        ],
+        [
+            "title" => "Exploring the Blue Fire",
+            "deskripsi" => "Saksikan fenomena langka api biru yang hanya ada dua di dunia saat malam hari.",
+            "img" => "/PHOTO/ijen_night_sky.png",
+        ],
+        [
+            "title" => "Experience the Sunrise",
+            "deskripsi" => "Sambut pagi dengan pemandangan matahari terbit yang spektakuler dari puncak Ijen.",
+            "img" => "/PHOTO/ijen_trail.png",
+        ],
+        [
+            "title" => "Enjoy the Night View",
+            "deskripsi" => "Rasakan suasana malam yang magis dengan langit penuh bintang di atas kawah.",
+            "img" => "/PHOTO/kawah_ijen_premium.png",
+        ]
+    ];
+    ?>
+
     <div class="container-fluid">
         <!-- NAVBAR -->
         <div class="row">
@@ -86,18 +111,18 @@
         <!-- CARDS -->
         <div class="container my-5">
             <div class="row justify-content-center g-4">
-                <% wisata_kawahijen.forEach(function(wisata) { %>
+                <?php foreach ($wisata_kawahijen as $wisata) : ?>
                     <div class="col-auto">
                         <div class="card" style="width: 18rem;">
-                            <img src="<%= wisata.img %>" class="card-img-top" alt="<%= wisata.title %>">
+                            <img src="<?php echo htmlspecialchars($wisata["img"]); ?>" class="card-img-top" alt="<?php echo htmlspecialchars($wisata["title"]); ?>">
                             <div class="card-body d-flex flex-column">
-                                <h5 class="card-title"><%= wisata.title %></h5>
-                                <p class="card-text"><%= wisata.deskripsi %></p>
+                                <h5 class="card-title"><?php echo htmlspecialchars($wisata["title"]); ?></h5>
+                                <p class="card-text"><?php echo htmlspecialchars($wisata["deskripsi"]); ?></p>
                                 <a href="/tiket" class="btn btn-primary mt-auto">Beli Tiket</a>
                             </div>
                         </div>
                     </div>
-                <% }); %>
+                <?php endforeach; ?>
             </div>
         </div>
 
