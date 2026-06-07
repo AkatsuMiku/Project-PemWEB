@@ -276,20 +276,48 @@
                             modalBody.scrollTop = 0;
                         }
 
-                        // Calculate transition origin from the clicked card
+                        // Calculate spatial position and dimensions of the popup relative to the card
                         const rect = card.getBoundingClientRect();
                         const cardX = rect.left + rect.width / 2;
                         const cardY = rect.top + rect.height / 2;
 
-                        const containerWidth = container.offsetWidth;
+                        // Calculate optimal width based on device screen
+                        let targetWidth;
+                        if (window.innerWidth < 576) {
+                            targetWidth = window.innerWidth * 0.92;
+                        } else {
+                            targetWidth = Math.max(320, Math.min(420, rect.width * 1.35));
+                        }
+
+                        // Apply styles before measuring offsetHeight so layout is calculated correctly
+                        container.style.position = "absolute";
+                        container.style.width = `${targetWidth}px`;
+                        container.style.maxWidth = "100%";
+
+                        // Measure layout height of the container with the new content and width
                         const containerHeight = container.offsetHeight;
 
-                        const containerLeft = (window.innerWidth - containerWidth) / 2;
-                        const containerTop = (window.innerHeight - containerHeight) / 2;
+                        // Calculate left position (centered relative to the card, clamped inside viewport)
+                        let left = rect.left + (rect.width - targetWidth) / 2;
+                        left = Math.max(10, Math.min(left, window.innerWidth - targetWidth - 10));
 
-                        const originX = cardX - containerLeft;
-                        const originY = cardY - containerTop;
+                        // Calculate top position (aligned with top of card, or shifting up if space is limited)
+                        let top;
+                        const spaceBelow = window.innerHeight - rect.top;
+                        if (spaceBelow >= containerHeight + 20 || spaceBelow > rect.bottom) {
+                            top = rect.top;
+                        } else {
+                            top = rect.bottom - containerHeight;
+                        }
+                        top = Math.max(10, Math.min(top, window.innerHeight - containerHeight - 10));
 
+                        // Apply position coordinates
+                        container.style.left = `${left}px`;
+                        container.style.top = `${top}px`;
+
+                        // Set transform origin relative to the container itself
+                        const originX = cardX - left;
+                        const originY = cardY - top;
                         container.style.transformOrigin = `${originX}px ${originY}px`;
 
                         // Show modal

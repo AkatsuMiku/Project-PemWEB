@@ -326,11 +326,8 @@ footer {
     left: 0;
     width: 100vw;
     height: 100vh;
-    background-color: rgba(15, 23, 42, 0.03); /* very light, clear tint */
+    background-color: transparent; /* completely transparent */
     z-index: 99999;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
@@ -411,7 +408,7 @@ footer {
     color: #0f172a;
     font-size: 1.6rem;
     margin-bottom: 20px;
-    padding-right: 30px;
+    padding-right: 45px;
     line-height: 1.3;
 }
 
