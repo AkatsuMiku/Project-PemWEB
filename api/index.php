@@ -247,6 +247,7 @@
         
         document.addEventListener("DOMContentLoaded", () => {
             const modal = document.getElementById("attractionModal");
+            const container = modal.querySelector(".custom-modal-container");
             const modalTitle = document.getElementById("modalTitle");
             const modalContent = document.getElementById("modalContent");
             const modalTips = document.getElementById("modalTips");
@@ -268,6 +269,28 @@
                             li.textContent = tip;
                             modalTips.appendChild(li);
                         });
+
+                        // Reset scroll position of the modal body
+                        const modalBody = modal.querySelector(".custom-modal-body");
+                        if (modalBody) {
+                            modalBody.scrollTop = 0;
+                        }
+
+                        // Calculate transition origin from the clicked card
+                        const rect = card.getBoundingClientRect();
+                        const cardX = rect.left + rect.width / 2;
+                        const cardY = rect.top + rect.height / 2;
+
+                        const containerWidth = container.offsetWidth;
+                        const containerHeight = container.offsetHeight;
+
+                        const containerLeft = (window.innerWidth - containerWidth) / 2;
+                        const containerTop = (window.innerHeight - containerHeight) / 2;
+
+                        const originX = cardX - containerLeft;
+                        const originY = cardY - containerTop;
+
+                        container.style.transformOrigin = `${originX}px ${originY}px`;
 
                         // Show modal
                         modal.classList.add("active");
