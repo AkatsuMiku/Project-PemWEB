@@ -15,21 +15,49 @@
             "title" => "Melihat Keindahan kawah ijen",
             "deskripsi" => "Nikmati pemandangan kawah vulkanik dengan danau asam berwarna toska yang memukau.",
             "img" => "/PHOTO/ijen_volcano.jpg",
+            "popup_title" => "Detail: Keindahan & Geologi Kawah Ijen",
+            "popup_content" => "Kawah Ijen merupakan salah satu keajaiban geologi Indonesia yang berupa danau kawah bersifat asam terbesar di dunia. Terletak di ketinggian 2.386 mdpl, danau ini memiliki diameter sekitar 951 meter dengan kedalaman mencapai 200 meter. Keunikan utamanya terletak pada warna airnya yang hijau toska pekat yang sangat memukau, yang terjadi akibat tingginya konsentrasi asam sulfat, air raksa, dan berbagai material vulkanik terlarut di dalamnya. Selain menikmati pemandangan danau yang megah dari bibir kaldera, pengunjung juga dapat menyaksikan langsung aktivitas luar biasa dari para penambang belerang tradisional yang naik-turun kawah sambil memikul beban hingga 80-100 kg batu belerang murni.",
+            "tips" => [
+                "Sangat direkomendasikan memakai masker respirator (bukan masker kain biasa) karena embusan angin sering kali membawa gas belerang yang pekat dan menyengat.",
+                "Jaga jarak aman dari bibir kawah and selalu utamakan jalan bagi para penambang belerang yang sedang melintas demi keselamatan bersama.",
+                "Gunakan sepatu gunung atau sepatu olahraga dengan sol yang tidak licin karena jalur trekking menuju bibir kawah didominasi oleh pasir dan batuan kerikil yang cukup curam."
+            ]
         ],
         [
             "title" => "Exploring the Blue Fire",
             "deskripsi" => "Saksikan fenomena langka api biru yang hanya ada dua di dunia saat malam hari.",
             "img" => "/PHOTO/ijen_night_sky.png",
+            "popup_title" => "Detail: Eksplorasi Fenomena Langka Blue Fire",
+            "popup_content" => "Fenomena Api Biru atau \"Blue Fire\" di Kawah Ijen adalah daya tarik kelas dunia yang sangat langka, karena hanya dapat ditemukan di dua lokasi di seluruh planet Bumi—yaitu di Islandia dan di Gunung Ijen, Indonesia. Banyak orang salah mengira bahwa ini adalah lava berwarna biru, namun secara ilmiah fenomena ini terjadi karena adanya gas belerang bertekanan tinggi yang keluar dari retakan tanah dengan suhu ekstrem mencapai 600°C. Ketika gas super panas ini bertemu dan bereaksi langsung dengan oksigen di udara bebas, gas tersebut memicu percikan api berwarna biru elektrik yang menyala di kegelapan malam. Fenomena magis ini berangsur-angsur memudar dan hilang seiring munculnya cahaya matahari pagi.",
+            "tips" => [
+                "Untuk menyembunyikan atau melihat Blue Fire dengan sempurna, pendakian dari Pos Paltuding harus dimulai sekitar jam 01.00 atau 02.00 dini hari.",
+                "Jika Anda berniat turun ke dasar kawah untuk melihat Blue Fire dari dekat, Anda wajib menyewa pemandu lokal (guide) karena medannya sangat curam, berbatu besar, dan minim pencahayaan.",
+                "Bawa kacamata pelindung (goggles) untuk mencegah mata Anda perih dan berair akibat paparan asap belerang yang tebal di dasar kawah."
+            ]
         ],
         [
             "title" => "Experience the Sunrise",
             "deskripsi" => "Sambut pagi dengan pemandangan matahari terbit yang spektakuler dari puncak Ijen.",
             "img" => "/PHOTO/ijen_trail.png",
+            "popup_title" => "Detail: Menyambut Sunrise Spektakuler di Puncak Ijen",
+            "popup_content" => "Momen matahari terbit (sunrise) di puncak Gunung Ijen menyajikan salah satu panorama fajar paling dramatis di Indonesia. Setelah melewati dinginnya malam, pengunjung akan disuguhkan perubahan warna langit yang luar biasa, mulai dari biru gelap, ungu, hingga gradasi oranye dan kuning keemasan yang hangat. Sinar matahari pagi yang perlahan menyentuh permukaan Kawah Ijen akan mempertegas warna hijau toska air danau dan memunculkan siluet megah dari gunung-gunung di sekitarnya, seperti Gunung Raung, Gunung Suket, dan Gunung Baluran. Menyaksikan kabut tipis yang melayang di atas permukaan kawah berlatar belakang matahari terbit memberikan sensasi kedamaian yang tidak terlupakan.",
+            "tips" => [
+                "Suhu udara di puncak Ijen menjelang pagi hari bisa sangat ekstrem drops hingga mencapai 5°C sampai 10°C. Pastikan Anda mengenakan jaket windproof tebal, kupluk, masker, dan sarung tangan.",
+                "Cari spot foto terbaik di sekitar area \"Pohon Mati\" (kompleks pepohonan kering eksotis) agak ke sebelah kanan dari jalur utama bibir kawah untuk mendapatkan sudut pandang terbaik berlatar matahari terbit.",
+                "Jangan terburu-buru turun setelah matahari terbit, karena pencahayaan terbaik untuk berfoto dengan latar belakang danau kawah justru terjadi antara jam 06.00 - 07.30 pagi saat sinar matahari menyinari seluruh permukaan air."
+            ]
         ],
         [
             "title" => "Enjoy the Night View",
             "deskripsi" => "Rasakan suasana malam yang magis dengan langit penuh bintang di atas kawah.",
             "img" => "/PHOTO/kawah_ijen_premium.png",
+            "popup_title" => "Detail: Pesona Langit Malam & Astrofotografi Ijen",
+            "popup_content" => "Selain pesona kawahnya, Gunung Ijen adalah surga tersembunyi bagi para pencinta keindahan langit malam (stargazing). Karena letaknya yang jauh dari polusi cahaya perkotaan besar dan berada di dataran tinggi, langit di sekitar kawasan Ijen sangat bersih dan jernih pada malam hari yang cerah. Pengunjung yang melakukan pendakian dini hari dapat menyaksikan hamparan miliaran bintang yang membentuk galaksi Bima Sakti (Milky Way) membentang luas tepat di atas kaldera. Kombinasi antara siluet pegunungan yang kokoh, kepulan asap solfatara yang samar, dan gemerlap bintang di langit menciptakan atmosfer yang sangat magis, puitis, dan fotogenik.",
+            "tips" => [
+                "Pastikan Anda membawa headlamp (senter kepala) berkualitas dengan baterai cadangan yang cukup karena sepanjang jalur pendakian sama sekali tidak ada lampu penerangan jalan.",
+                "Bagi pencinta fotografi yang ingin memburu foto Milky Way, waktu terbaik adalah saat musim kemarau (antara bulan Mei hingga September) ketika langit cenderung bersih tanpa awan.",
+                "Gunakan pengaturan kamera manual (Pro Mode) dengan tripod yang sangat kokoh, bukaan lensa terbesar (f/1.8 - f/2.8), ISO tinggi (1600 - 3200), dan shutter speed sekitar 15-25 detik untuk menangkap detail bintang dengan sempurna."
+            ]
         ]
     ];
     ?>
@@ -130,9 +158,9 @@
         <!-- CARDS -->
         <div class="container my-5">
             <div class="row justify-content-center g-4">
-                <?php foreach ($wisata_kawahijen as $wisata) : ?>
+                <?php foreach ($wisata_kawahijen as $index => $wisata) : ?>
                     <div class="col-6 col-md-4 col-lg-3 d-flex align-items-stretch">
-                        <div class="card w-100">
+                        <div class="card w-100 card-clickable" data-index="<?php echo $index; ?>" style="cursor: pointer;">
                             <img src="<?php echo htmlspecialchars($wisata["img"]); ?>" class="card-img-top" alt="<?php echo htmlspecialchars($wisata["title"]); ?>">
                             <div class="card-body d-flex flex-column">
                                 <h5 class="card-title"><?php echo htmlspecialchars($wisata["title"]); ?></h5>
@@ -198,6 +226,78 @@
         </footer>
     </div>
 
+    <!-- Custom Modal -->
+    <div class="custom-modal-overlay" id="attractionModal">
+        <div class="custom-modal-container">
+            <button class="custom-modal-close" id="closeModalBtn">&times;</button>
+            <div class="custom-modal-body">
+                <h3 class="modal-title-custom" id="modalTitle"></h3>
+                <p class="modal-content-custom" id="modalContent"></p>
+                <div class="modal-tips-container">
+                    <h5 class="tips-heading"><i class="fas fa-lightbulb me-2 text-warning"></i>Tips Praktis</h5>
+                    <ul class="tips-list" id="modalTips"></ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script src="/assets/BOOTSRAP/js/bootstrap.bundle.min.js"></script>
+    <script>
+        const wisataData = <?php echo json_encode($wisata_kawahijen); ?>;
+        
+        document.addEventListener("DOMContentLoaded", () => {
+            const modal = document.getElementById("attractionModal");
+            const modalTitle = document.getElementById("modalTitle");
+            const modalContent = document.getElementById("modalContent");
+            const modalTips = document.getElementById("modalTips");
+            const closeBtn = document.getElementById("closeModalBtn");
+            const cards = document.querySelectorAll(".card-clickable");
+
+            cards.forEach(card => {
+                card.addEventListener("click", () => {
+                    const index = card.getAttribute("data-index");
+                    const data = wisataData[index];
+                    if (data) {
+                        modalTitle.textContent = data.popup_title;
+                        modalContent.textContent = data.popup_content;
+                        
+                        // Populate tips
+                        modalTips.innerHTML = "";
+                        data.tips.forEach(tip => {
+                            const li = document.createElement("li");
+                            li.textContent = tip;
+                            modalTips.appendChild(li);
+                        });
+
+                        // Show modal
+                        modal.classList.add("active");
+                        document.body.style.overflow = "hidden"; // Prevent background scroll
+                    }
+                });
+            });
+
+            // Close modal functions
+            const closeModal = () => {
+                modal.classList.remove("active");
+                document.body.style.overflow = ""; // Enable background scroll
+            };
+
+            closeBtn.addEventListener("click", closeModal);
+            
+            // Close when clicking outside container
+            modal.addEventListener("click", (e) => {
+                if (e.target === modal) {
+                    closeModal();
+                }
+            });
+
+            // Close with Escape key
+            document.addEventListener("keydown", (e) => {
+                if (e.key === "Escape" && modal.classList.contains("active")) {
+                    closeModal();
+                }
+            });
+        });
+    </script>
 </body>
 </html>
