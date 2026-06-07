@@ -158,15 +158,23 @@
         <!-- CARDS -->
         <div class="container my-5">
             <div class="row justify-content-center g-4">
-                <?php foreach ($wisata_kawahijen as $index => $wisata) : ?>
+                <?php 
+                $page_urls = [
+                    "/api/keindahan-kawah-ijen.php",
+                    "/api/exploring-the-blue-fire.php",
+                    "/api/experience-the-sunrise.php",
+                    "/api/enjoy-the-night-view.php"
+                ];
+                foreach ($wisata_kawahijen as $index => $wisata) : 
+                ?>
                     <div class="col-6 col-md-4 col-lg-3 d-flex align-items-stretch">
-                        <div class="card w-100 card-clickable" data-index="<?php echo $index; ?>" style="cursor: pointer;">
+                        <a href="<?php echo $page_urls[$index]; ?>" class="card w-100 text-decoration-none text-dark" style="cursor: pointer;">
                             <img src="<?php echo htmlspecialchars($wisata["img"]); ?>" class="card-img-top" alt="<?php echo htmlspecialchars($wisata["title"]); ?>">
                             <div class="card-body d-flex flex-column">
                                 <h5 class="card-title"><?php echo htmlspecialchars($wisata["title"]); ?></h5>
                                 <p class="card-text mb-0"><?php echo htmlspecialchars($wisata["deskripsi"]); ?></p>
                             </div>
-                        </div>
+                        </a>
                     </div>
                 <?php endforeach; ?>
             </div>
@@ -226,131 +234,6 @@
         </footer>
     </div>
 
-    <!-- Custom Modal -->
-    <div class="custom-modal-overlay" id="attractionModal">
-        <div class="custom-modal-wrapper">
-            <button class="custom-modal-close" id="closeModalBtn">&times;</button>
-            <div class="custom-modal-container">
-                <div class="custom-modal-body">
-                    <h3 class="modal-title-custom" id="modalTitle"></h3>
-                    <p class="modal-content-custom" id="modalContent"></p>
-                    <div class="modal-tips-container">
-                        <h5 class="tips-heading"><i class="fas fa-lightbulb me-2 text-warning"></i>Tips Praktis</h5>
-                        <ul class="tips-list" id="modalTips"></ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <script src="/assets/BOOTSRAP/js/bootstrap.bundle.min.js"></script>
-    <script>
-        const wisataData = <?php echo json_encode($wisata_kawahijen); ?>;
-        
-        document.addEventListener("DOMContentLoaded", () => {
-            const modal = document.getElementById("attractionModal");
-            const wrapper = modal.querySelector(".custom-modal-wrapper");
-            const container = modal.querySelector(".custom-modal-container");
-            const modalTitle = document.getElementById("modalTitle");
-            const modalContent = document.getElementById("modalContent");
-            const modalTips = document.getElementById("modalTips");
-            const closeBtn = document.getElementById("closeModalBtn");
-            const cards = document.querySelectorAll(".card-clickable");
-
-            cards.forEach(card => {
-                card.addEventListener("click", () => {
-                    const index = card.getAttribute("data-index");
-                    const data = wisataData[index];
-                    if (data) {
-                        modalTitle.textContent = data.popup_title;
-                        modalContent.textContent = data.popup_content;
-                        
-                        // Populate tips
-                        modalTips.innerHTML = "";
-                        data.tips.forEach(tip => {
-                            const li = document.createElement("li");
-                            li.textContent = tip;
-                            modalTips.appendChild(li);
-                        });
-
-                        // Reset scroll position of the scrollable container
-                        if (container) {
-                            container.scrollTop = 0;
-                        }
-
-                        // Calculate spatial position and dimensions of the popup relative to the card
-                        const rect = card.getBoundingClientRect();
-                        const cardX = rect.left + rect.width / 2;
-                        const cardY = rect.top + rect.height / 2;
-
-                        // Calculate optimal width based on device screen
-                        let targetWidth;
-                        if (window.innerWidth < 576) {
-                            targetWidth = window.innerWidth * 0.92;
-                        } else {
-                            targetWidth = Math.max(320, Math.min(420, rect.width * 1.35));
-                        }
-
-                        // Apply styles before measuring offsetHeight so layout is calculated correctly
-                        wrapper.style.position = "absolute";
-                        wrapper.style.width = `${targetWidth}px`;
-                        wrapper.style.maxWidth = "100%";
-
-                        // Measure layout height of the wrapper with the new content and width
-                        const wrapperHeight = wrapper.offsetHeight;
-
-                        // Calculate left position (centered relative to the card, clamped inside viewport)
-                        let left = rect.left + (rect.width - targetWidth) / 2;
-                        left = Math.max(10, Math.min(left, window.innerWidth - targetWidth - 10));
-
-                        // Calculate top position (aligned with top of card, or shifting up if space is limited)
-                        let top;
-                        const spaceBelow = window.innerHeight - rect.top;
-                        if (spaceBelow >= wrapperHeight + 20 || spaceBelow > rect.bottom) {
-                            top = rect.top;
-                        } else {
-                            top = rect.bottom - wrapperHeight;
-                        }
-                        top = Math.max(10, Math.min(top, window.innerHeight - wrapperHeight - 10));
-
-                        // Apply position coordinates to wrapper
-                        wrapper.style.left = `${left}px`;
-                        wrapper.style.top = `${top}px`;
-
-                        // Set transform origin relative to the wrapper itself
-                        const originX = cardX - left;
-                        const originY = cardY - top;
-                        wrapper.style.transformOrigin = `${originX}px ${originY}px`;
-
-                        // Show modal
-                        modal.classList.add("active");
-                        document.body.style.overflow = "hidden"; // Prevent background scroll
-                    }
-                });
-            });
-
-            // Close modal functions
-            const closeModal = () => {
-                modal.classList.remove("active");
-                document.body.style.overflow = ""; // Enable background scroll
-            };
-
-            closeBtn.addEventListener("click", closeModal);
-            
-            // Close when clicking outside container
-            modal.addEventListener("click", (e) => {
-                if (e.target === modal) {
-                    closeModal();
-                }
-            });
-
-            // Close with Escape key
-            document.addEventListener("keydown", (e) => {
-                if (e.key === "Escape" && modal.classList.contains("active")) {
-                    closeModal();
-                }
-            });
-        });
-    </script>
 </body>
 </html>
