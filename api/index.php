@@ -228,14 +228,16 @@
 
     <!-- Custom Modal -->
     <div class="custom-modal-overlay" id="attractionModal">
-        <div class="custom-modal-container">
+        <div class="custom-modal-wrapper">
             <button class="custom-modal-close" id="closeModalBtn">&times;</button>
-            <div class="custom-modal-body">
-                <h3 class="modal-title-custom" id="modalTitle"></h3>
-                <p class="modal-content-custom" id="modalContent"></p>
-                <div class="modal-tips-container">
-                    <h5 class="tips-heading"><i class="fas fa-lightbulb me-2 text-warning"></i>Tips Praktis</h5>
-                    <ul class="tips-list" id="modalTips"></ul>
+            <div class="custom-modal-container">
+                <div class="custom-modal-body">
+                    <h3 class="modal-title-custom" id="modalTitle"></h3>
+                    <p class="modal-content-custom" id="modalContent"></p>
+                    <div class="modal-tips-container">
+                        <h5 class="tips-heading"><i class="fas fa-lightbulb me-2 text-warning"></i>Tips Praktis</h5>
+                        <ul class="tips-list" id="modalTips"></ul>
+                    </div>
                 </div>
             </div>
         </div>
@@ -247,6 +249,7 @@
         
         document.addEventListener("DOMContentLoaded", () => {
             const modal = document.getElementById("attractionModal");
+            const wrapper = modal.querySelector(".custom-modal-wrapper");
             const container = modal.querySelector(".custom-modal-container");
             const modalTitle = document.getElementById("modalTitle");
             const modalContent = document.getElementById("modalContent");
@@ -270,10 +273,9 @@
                             modalTips.appendChild(li);
                         });
 
-                        // Reset scroll position of the modal body
-                        const modalBody = modal.querySelector(".custom-modal-body");
-                        if (modalBody) {
-                            modalBody.scrollTop = 0;
+                        // Reset scroll position of the scrollable container
+                        if (container) {
+                            container.scrollTop = 0;
                         }
 
                         // Calculate spatial position and dimensions of the popup relative to the card
@@ -290,12 +292,12 @@
                         }
 
                         // Apply styles before measuring offsetHeight so layout is calculated correctly
-                        container.style.position = "absolute";
-                        container.style.width = `${targetWidth}px`;
-                        container.style.maxWidth = "100%";
+                        wrapper.style.position = "absolute";
+                        wrapper.style.width = `${targetWidth}px`;
+                        wrapper.style.maxWidth = "100%";
 
-                        // Measure layout height of the container with the new content and width
-                        const containerHeight = container.offsetHeight;
+                        // Measure layout height of the wrapper with the new content and width
+                        const wrapperHeight = wrapper.offsetHeight;
 
                         // Calculate left position (centered relative to the card, clamped inside viewport)
                         let left = rect.left + (rect.width - targetWidth) / 2;
@@ -304,21 +306,21 @@
                         // Calculate top position (aligned with top of card, or shifting up if space is limited)
                         let top;
                         const spaceBelow = window.innerHeight - rect.top;
-                        if (spaceBelow >= containerHeight + 20 || spaceBelow > rect.bottom) {
+                        if (spaceBelow >= wrapperHeight + 20 || spaceBelow > rect.bottom) {
                             top = rect.top;
                         } else {
-                            top = rect.bottom - containerHeight;
+                            top = rect.bottom - wrapperHeight;
                         }
-                        top = Math.max(10, Math.min(top, window.innerHeight - containerHeight - 10));
+                        top = Math.max(10, Math.min(top, window.innerHeight - wrapperHeight - 10));
 
-                        // Apply position coordinates
-                        container.style.left = `${left}px`;
-                        container.style.top = `${top}px`;
+                        // Apply position coordinates to wrapper
+                        wrapper.style.left = `${left}px`;
+                        wrapper.style.top = `${top}px`;
 
-                        // Set transform origin relative to the container itself
+                        // Set transform origin relative to the wrapper itself
                         const originX = cardX - left;
                         const originY = cardY - top;
-                        container.style.transformOrigin = `${originX}px ${originY}px`;
+                        wrapper.style.transformOrigin = `${originX}px ${originY}px`;
 
                         // Show modal
                         modal.classList.add("active");

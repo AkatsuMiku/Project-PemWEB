@@ -340,39 +340,34 @@ footer {
     pointer-events: auto;
 }
 
+/* Custom Modal Wrapper */
+.custom-modal-wrapper {
+    position: absolute;
+    transform: scale(0);
+    opacity: 0;
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.3s ease;
+    z-index: 10;
+}
+
+.custom-modal-overlay.active .custom-modal-wrapper {
+    transform: scale(1);
+    opacity: 1;
+}
+
 /* Custom Modal Container */
 .custom-modal-container {
     background: rgba(255, 255, 255, 0.98);
     border-radius: 28px;
-    width: 90%;
-    max-width: 650px;
-    max-height: 85vh;
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-    position: relative;
+    width: 100%;
+    max-height: 80vh;
+    overflow-y: auto;
     box-shadow: 
         0 30px 80px rgba(0, 0, 0, 0.18), 
         0 10px 30px rgba(0, 0, 0, 0.08),
         inset 0 1px 0 rgba(255, 255, 255, 0.6),
         0 0 0 1px rgba(0, 0, 0, 0.04);
     padding: 35px;
-    transform: scale(0);
-    opacity: 0;
-    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.3s ease;
-}
-
-.custom-modal-overlay.active .custom-modal-container {
-    transform: scale(1);
-    opacity: 1;
-}
-
-/* Custom Modal Scrollable Body */
-.custom-modal-body {
-    overflow-y: auto;
-    flex: 1;
-    padding-right: 8px;
-    margin-top: 15px;
+    box-sizing: border-box;
 }
 
 /* Custom Modal Close Button */
