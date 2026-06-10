@@ -1,3 +1,22 @@
+<?php
+require_once __DIR__ . '/config.php';
+/** @var PDO $pdo */
+
+$slug = 'experience-the-sunrise';
+$stmt = $pdo->prepare("SELECT * FROM wisata WHERE slug = ?");
+$stmt->execute([$slug]);
+$wisata = $stmt->fetch();
+
+if (!$wisata) {
+    header('Location: index.php');
+    exit;
+}
+
+// Fetch tips
+$stmtTips = $pdo->prepare("SELECT tip FROM wisata_tips WHERE wisata_id = ?");
+$stmtTips->execute([$wisata['id']]);
+$tips = $stmtTips->fetchAll(PDO::FETCH_COLUMN);
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,7 +25,7 @@
     <link rel="stylesheet" href="/assets/BOOTSRAP/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="/index/style.css">
-    <title>Menyambut Sunrise Spektakuler di Puncak Ijen - Explore Kawah Ijen</title>
+    <title><?php echo htmlspecialchars($wisata['popup_title']); ?> - Explore Kawah Ijen</title>
 </head>
 <body>
     <div class="container-fluid">
@@ -34,9 +53,14 @@
                                 </ul>
                             </li>
                             <li class="nav-item"><a class="nav-link" href="#">Bantuan</a></li>
-                            <li class="nav-item ms-lg-3">
-                                <a href="" class="btn btn-outline-primary rounded-pill px-4 me-2 mb-2 mb-lg-0">Sign in</a>
-                                <a href="" class="btn btn-primary rounded-pill px-4">Sign up</a>
+                            <li class="nav-item ms-lg-3 d-flex align-items-center flex-column flex-lg-row">
+                                <?php if (isset($_SESSION['username'])): ?>
+                                    <span class="navbar-text me-lg-3 mb-2 mb-lg-0 fw-bold text-dark"><i class="fas fa-user-circle me-1"></i>Halo, <?php echo htmlspecialchars($_SESSION['username']); ?></span>
+                                    <a href="/api/logout.php" class="btn btn-outline-danger rounded-pill px-4">Sign out</a>
+                                <?php else: ?>
+                                    <a href="/api/login.php" class="btn btn-outline-primary rounded-pill px-4 me-2 mb-2 mb-lg-0">Sign in</a>
+                                    <a href="/api/register.php" class="btn btn-primary rounded-pill px-4">Sign up</a>
+                                <?php endif; ?>
                             </li>
                         </ul>
                     </div>
@@ -56,11 +80,11 @@
 
             <!-- Hero/Header Image -->
             <div class="position-relative rounded-4 overflow-hidden shadow-lg mb-5" style="height: 400px; border: 1px solid rgba(255,255,255,0.25);">
-                <img src="/PHOTO/ijen_trail.png" class="w-100 h-100" style="object-fit: cover;" alt="Experience the Sunrise">
+                <img src="<?php echo htmlspecialchars($wisata['img']); ?>" class="w-100 h-100" style="object-fit: cover;" alt="<?php echo htmlspecialchars($wisata['title']); ?>">
                 <div class="overlay"></div>
                 <div class="position-absolute bottom-0 start-0 p-4 p-md-5 w-100">
                     <div class="bg-dark bg-opacity-50 rounded-4 p-4 text-white border border-white border-opacity-10 d-inline-block" style="max-width: 80%; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);">
-                        <h1 class="display-6 fw-bold mb-0">Detail: Menyambut Sunrise Spektakuler di Puncak Ijen</h1>
+                        <h1 class="display-6 fw-bold mb-0"><?php echo htmlspecialchars($wisata['popup_title']); ?></h1>
                     </div>
                 </div>
             </div>
@@ -72,9 +96,7 @@
                     <div class="bg-white p-4 p-md-5 rounded-4 shadow-sm border border-light">
                         <h3 class="fw-bold text-dark mb-4">Deskripsi Lengkap</h3>
                         <p class="text-muted fs-6" style="line-height: 1.8; text-align: justify; white-space: pre-line;">
-                            Momen matahari terbit (sunrise) di puncak Gunung Ijen menyajikan salah satu panorama fajar paling dramatis di Indonesia. Setelah melewati dinginnya malam, pengunjung akan disuguhkan perubahan warna langit yang luar biasa, mulai dari biru gelap, ungu, hingga gradasi oranye dan kuning keemasan yang hangat.
-
-                            Sinar matahari pagi yang perlahan menyentuh permukaan Kawah Ijen akan mempertegas warna hijau toska air danau dan memunculkan siluet megah dari gunung-gunung di sekitarnya, seperti Gunung Raung, Gunung Suket, dan Gunung Baluran. Menyaksikan kabut tipis yang melayang di atas permukaan kawah berlatar belakang matahari terbit memberikan sensasi kedamaian yang tidak terlupakan.
+                            <?php echo htmlspecialchars($wisata['popup_content']); ?>
                         </p>
                     </div>
                 </div>
@@ -86,9 +108,9 @@
                             <i class="fas fa-lightbulb me-2 text-warning"></i>Tips Praktis
                         </h5>
                         <ul class="tips-list ps-3">
-                            <li class="mb-3 text-success" style="line-height: 1.6;">Suhu udara di puncak Ijen menjelang pagi hari bisa sangat ekstrem drops hingga mencapai 5°C sampai 10°C. Pastikan Anda mengenakan jaket windproof tebal, kupluk, masker, dan sarung tangan.</li>
-                            <li class="mb-3 text-success" style="line-height: 1.6;">Cari spot foto terbaik di sekitar area "Pohon Mati" (kompleks pepohonan kering eksotis) agak ke sebelah kanan dari jalur utama bibir kawah untuk mendapatkan sudut pandang terbaik berlatar matahari terbit.</li>
-                            <li class="mb-3 text-success" style="line-height: 1.6;">Jangan terburu-buru turun setelah matahari terbit, karena pencahayaan terbaik untuk berfoto dengan latar belakang danau kawah justru terjadi antara jam 06.00 - 07.30 pagi saat sinar matahari menyinari seluruh permukaan air.</li>
+                            <?php foreach ($tips as $tip): ?>
+                                <li class="mb-3 text-success" style="line-height: 1.6;"><?php echo htmlspecialchars($tip); ?></li>
+                            <?php endforeach; ?>
                         </ul>
                     </div>
                 </div>

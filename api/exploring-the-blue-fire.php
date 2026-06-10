@@ -1,3 +1,22 @@
+<?php
+require_once __DIR__ . '/config.php';
+/** @var PDO $pdo */
+
+$slug = 'exploring-the-blue-fire';
+$stmt = $pdo->prepare("SELECT * FROM wisata WHERE slug = ?");
+$stmt->execute([$slug]);
+$wisata = $stmt->fetch();
+
+if (!$wisata) {
+    header('Location: index.php');
+    exit;
+}
+
+// Fetch tips
+$stmtTips = $pdo->prepare("SELECT tip FROM wisata_tips WHERE wisata_id = ?");
+$stmtTips->execute([$wisata['id']]);
+$tips = $stmtTips->fetchAll(PDO::FETCH_COLUMN);
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,7 +25,7 @@
     <link rel="stylesheet" href="/assets/BOOTSRAP/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="/index/style.css">
-    <title>Eksplorasi Fenomena Langka Blue Fire - Explore Kawah Ijen</title>
+    <title><?php echo htmlspecialchars($wisata['popup_title']); ?> - Explore Kawah Ijen</title>
 </head>
 <body>
     <div class="container-fluid">
@@ -34,9 +53,14 @@
                                 </ul>
                             </li>
                             <li class="nav-item"><a class="nav-link" href="#">Bantuan</a></li>
-                            <li class="nav-item ms-lg-3">
-                                <a href="" class="btn btn-outline-primary rounded-pill px-4 me-2 mb-2 mb-lg-0">Sign in</a>
-                                <a href="" class="btn btn-primary rounded-pill px-4">Sign up</a>
+                            <li class="nav-item ms-lg-3 d-flex align-items-center flex-column flex-lg-row">
+                                <?php if (isset($_SESSION['username'])): ?>
+                                    <span class="navbar-text me-lg-3 mb-2 mb-lg-0 fw-bold text-dark"><i class="fas fa-user-circle me-1"></i>Halo, <?php echo htmlspecialchars($_SESSION['username']); ?></span>
+                                    <a href="/api/logout.php" class="btn btn-outline-danger rounded-pill px-4">Sign out</a>
+                                <?php else: ?>
+                                    <a href="/api/login.php" class="btn btn-outline-primary rounded-pill px-4 me-2 mb-2 mb-lg-0">Sign in</a>
+                                    <a href="/api/register.php" class="btn btn-primary rounded-pill px-4">Sign up</a>
+                                <?php endif; ?>
                             </li>
                         </ul>
                     </div>
@@ -56,11 +80,11 @@
 
             <!-- Hero/Header Image -->
             <div class="position-relative rounded-4 overflow-hidden shadow-lg mb-5" style="height: 400px; border: 1px solid rgba(255,255,255,0.25);">
-                <img src="/PHOTO/ijen_night_sky.png" class="w-100 h-100" style="object-fit: cover;" alt="Exploring the Blue Fire">
+                <img src="<?php echo htmlspecialchars($wisata['img']); ?>" class="w-100 h-100" style="object-fit: cover;" alt="<?php echo htmlspecialchars($wisata['title']); ?>">
                 <div class="overlay"></div>
                 <div class="position-absolute bottom-0 start-0 p-4 p-md-5 w-100">
                     <div class="bg-dark bg-opacity-50 rounded-4 p-4 text-white border border-white border-opacity-10 d-inline-block" style="max-width: 80%; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);">
-                        <h1 class="display-6 fw-bold mb-0">Detail: Eksplorasi Fenomena Langka Blue Fire</h1>
+                        <h1 class="display-6 fw-bold mb-0"><?php echo htmlspecialchars($wisata['popup_title']); ?></h1>
                     </div>
                 </div>
             </div>
@@ -72,9 +96,7 @@
                     <div class="bg-white p-4 p-md-5 rounded-4 shadow-sm border border-light">
                         <h3 class="fw-bold text-dark mb-4">Deskripsi Lengkap</h3>
                         <p class="text-muted fs-6" style="line-height: 1.8; text-align: justify; white-space: pre-line;">
-                            Fenomena Api Biru atau "Blue Fire" di Kawah Ijen adalah daya tarik kelas dunia yang sangat langka, karena hanya dapat ditemukan di dua lokasi di seluruh planet Bumi—yaitu di Islandia dan di Gunung Ijen, Indonesia. Banyak orang salah mengira bahwa ini adalah lava berwarna biru, namun secara ilmiah fenomena ini terjadi karena adanya gas belerang bertekanan tinggi yang keluar dari retakan tanah dengan suhu ekstrem mencapai 600°C.
-
-                            Ketika gas super panas ini bertemu dan bereaksi langsung dengan oksigen di udara bebas, gas tersebut memicu percikan api berwarna biru elektrik yang menyala di kegelapan malam. Fenomena magis ini berangsur-angsur memudar dan hilang seiring munculnya cahaya matahari pagi.
+                            <?php echo htmlspecialchars($wisata['popup_content']); ?>
                         </p>
                     </div>
                 </div>
@@ -86,9 +108,9 @@
                             <i class="fas fa-lightbulb me-2 text-warning"></i>Tips Praktis
                         </h5>
                         <ul class="tips-list ps-3">
-                            <li class="mb-3 text-success" style="line-height: 1.6;">Untuk menyaksikan atau melihat Blue Fire dengan sempurna, pendakian dari Pos Paltuding harus dimulai sekitar jam 01.00 atau 02.00 dini hari.</li>
-                            <li class="mb-3 text-success" style="line-height: 1.6;">Jika Anda berniat turun ke dasar kawah untuk melihat Blue Fire dari dekat, Anda wajib menyewa pemandu lokal (guide) karena medannya sangat curam, berbatu besar, dan minim pencahayaan.</li>
-                            <li class="mb-3 text-success" style="line-height: 1.6;">Bawa kacamata pelindung (goggles) untuk mencegah mata Anda perih dan berair akibat paparan asap belerang yang tebal di dasar kawah.</li>
+                            <?php foreach ($tips as $tip): ?>
+                                <li class="mb-3 text-success" style="line-height: 1.6;"><?php echo htmlspecialchars($tip); ?></li>
+                            <?php endforeach; ?>
                         </ul>
                     </div>
                 </div>

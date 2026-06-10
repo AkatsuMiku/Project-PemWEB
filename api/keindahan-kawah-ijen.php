@@ -1,3 +1,22 @@
+<?php
+require_once __DIR__ . '/config.php';
+/** @var PDO $pdo */
+
+$slug = 'keindahan-kawah-ijen';
+$stmt = $pdo->prepare("SELECT * FROM wisata WHERE slug = ?");
+$stmt->execute([$slug]);
+$wisata = $stmt->fetch();
+
+if (!$wisata) {
+    header('Location: index.php');
+    exit;
+}
+
+// Fetch tips
+$stmtTips = $pdo->prepare("SELECT tip FROM wisata_tips WHERE wisata_id = ?");
+$stmtTips->execute([$wisata['id']]);
+$tips = $stmtTips->fetchAll(PDO::FETCH_COLUMN);
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,7 +25,7 @@
     <link rel="stylesheet" href="/assets/BOOTSRAP/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="/index/style.css">
-    <title>Keindahan & Geologi Kawah Ijen - Explore Kawah Ijen</title>
+    <title><?php echo htmlspecialchars($wisata['popup_title']); ?> - Explore Kawah Ijen</title>
 </head>
 <body>
     <div class="container-fluid">
@@ -34,9 +53,14 @@
                                 </ul>
                             </li>
                             <li class="nav-item"><a class="nav-link" href="#">Bantuan</a></li>
-                            <li class="nav-item ms-lg-3">
-                                <a href="" class="btn btn-outline-primary rounded-pill px-4 me-2 mb-2 mb-lg-0">Sign in</a>
-                                <a href="" class="btn btn-primary rounded-pill px-4">Sign up</a>
+                            <li class="nav-item ms-lg-3 d-flex align-items-center flex-column flex-lg-row">
+                                <?php if (isset($_SESSION['username'])): ?>
+                                    <span class="navbar-text me-lg-3 mb-2 mb-lg-0 fw-bold text-dark"><i class="fas fa-user-circle me-1"></i>Halo, <?php echo htmlspecialchars($_SESSION['username']); ?></span>
+                                    <a href="/api/logout.php" class="btn btn-outline-danger rounded-pill px-4">Sign out</a>
+                                <?php else: ?>
+                                    <a href="/api/login.php" class="btn btn-outline-primary rounded-pill px-4 me-2 mb-2 mb-lg-0">Sign in</a>
+                                    <a href="/api/register.php" class="btn btn-primary rounded-pill px-4">Sign up</a>
+                                <?php endif; ?>
                             </li>
                         </ul>
                     </div>
@@ -56,11 +80,11 @@
 
             <!-- Hero/Header Image -->
             <div class="position-relative rounded-4 overflow-hidden shadow-lg mb-5" style="height: 400px; border: 1px solid rgba(255,255,255,0.25);">
-                <img src="/PHOTO/ijen_volcano.jpg" class="w-100 h-100" style="object-fit: cover;" alt="Keindahan Kawah Ijen">
+                <img src="<?php echo htmlspecialchars($wisata['img']); ?>" class="w-100 h-100" style="object-fit: cover;" alt="<?php echo htmlspecialchars($wisata['title']); ?>">
                 <div class="overlay"></div>
                 <div class="position-absolute bottom-0 start-0 p-4 p-md-5 w-100">
                     <div class="bg-dark bg-opacity-50 rounded-4 p-4 text-white border border-white border-opacity-10 d-inline-block" style="max-width: 80%; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);">
-                        <h1 class="display-6 fw-bold mb-0">Detail: Keindahan & Geologi Kawah Ijen</h1>
+                        <h1 class="display-6 fw-bold mb-0"><?php echo htmlspecialchars($wisata['popup_title']); ?></h1>
                     </div>
                 </div>
             </div>
@@ -72,9 +96,7 @@
                     <div class="bg-white p-4 p-md-5 rounded-4 shadow-sm border border-light">
                         <h3 class="fw-bold text-dark mb-4">Deskripsi Lengkap</h3>
                         <p class="text-muted fs-6" style="line-height: 1.8; text-align: justify; white-space: pre-line;">
-                            Kawah Ijen merupakan salah satu keajaiban geologi Indonesia yang berupa danau kawah bersifat asam terbesar di dunia. Terletak di ketinggian 2.386 mdpl, danau ini memiliki diameter sekitar 951 meter dengan kedalaman mencapai 200 meter. Keunikan utamanya terletak pada warna airnya yang hijau toska pekat yang sangat memukau, yang terjadi akibat tingginya konsentrasi asam sulfat, air raksa, dan berbagai material vulkanik terlarut di dalamnya.
-
-                            Selain menikmati pemandangan danau yang megah dari bibir kaldera, pengunjung juga dapat menyaksikan langsung aktivitas luar biasa dari para penambang belerang tradisional yang naik-turun kawah sambil memikul beban hingga 80-100 kg batu belerang murni.
+                            <?php echo htmlspecialchars($wisata['popup_content']); ?>
                         </p>
                     </div>
                 </div>
@@ -86,9 +108,9 @@
                             <i class="fas fa-lightbulb me-2 text-warning"></i>Tips Praktis
                         </h5>
                         <ul class="tips-list ps-3">
-                            <li class="mb-3 text-success" style="line-height: 1.6;">Sangat direkomendasikan memakai masker respirator (bukan masker kain biasa) karena embusan angin sering kali membawa gas belerang yang pekat dan menyengat.</li>
-                            <li class="mb-3 text-success" style="line-height: 1.6;">Jaga jarak aman dari bibir kawah and selalu utamakan jalan bagi para penambang belerang yang sedang melintas demi keselamatan bersama.</li>
-                            <li class="mb-3 text-success" style="line-height: 1.6;">Gunakan sepatu gunung atau sepatu olahraga dengan sol yang tidak licin karena jalur trekking menuju bibir kawah didominasi oleh pasir dan batuan kerikil yang cukup curam.</li>
+                            <?php foreach ($tips as $tip): ?>
+                                <li class="mb-3 text-success" style="line-height: 1.6;"><?php echo htmlspecialchars($tip); ?></li>
+                            <?php endforeach; ?>
                         </ul>
                     </div>
                 </div>
