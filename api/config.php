@@ -27,26 +27,26 @@ class DatabaseSessionHandler implements SessionHandlerInterface {
         $this->pdo = $pdo;
     }
 
-    public function open($savePath, $sessionName) {
+    public function open(string $path, string $name): bool {
         return true;
     }
 
-    public function close() {
+    public function close(): bool {
         return true;
     }
 
-    public function read($id) {
+    public function read(string $id): string|false {
         try {
             $stmt = $this->pdo->prepare("SELECT data FROM sessions WHERE id = ?");
             $stmt->execute([$id]);
             $row = $stmt->fetch();
-            return $row ? $row['data'] : '';
+            return $row ? (string)$row['data'] : '';
         } catch (PDOException $e) {
             return '';
         }
     }
 
-    public function write($id, $data) {
+    public function write(string $id, string $data): bool {
         try {
             $stmt = $this->pdo->prepare("REPLACE INTO sessions (id, data, last_access) VALUES (?, ?, ?)");
             $stmt->execute([$id, $data, time()]);
@@ -56,7 +56,7 @@ class DatabaseSessionHandler implements SessionHandlerInterface {
         }
     }
 
-    public function destroy($id) {
+    public function destroy(string $id): bool {
         try {
             $stmt = $this->pdo->prepare("DELETE FROM sessions WHERE id = ?");
             $stmt->execute([$id]);
@@ -66,9 +66,9 @@ class DatabaseSessionHandler implements SessionHandlerInterface {
         }
     }
 
-    public function gc($maxlifetime) {
+    public function gc(int $max_lifetime): int|false {
         try {
-            $old = time() - $maxlifetime;
+            $old = time() - $max_lifetime;
             $stmt = $this->pdo->prepare("DELETE FROM sessions WHERE last_access < ?");
             $stmt->execute([$old]);
             return true;
@@ -81,6 +81,25 @@ class DatabaseSessionHandler implements SessionHandlerInterface {
 if (session_status() === PHP_SESSION_NONE) {
     $handler = new DatabaseSessionHandler($pdo);
     session_set_save_handler($handler, true);
+    
+    // Explicitly configure session cookie parameters
+    $secure = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on';
+    if (isset($_SERVER['HTTP_HOST']) && (strpos($_SERVER['HTTP_HOST'], 'localhost') !== false || strpos($_SERVER['HTTP_HOST'], '127.0.0.1') !== false)) {
+        $secure = false;
+    }
+    
+    session_set_cookie_params([
+        'lifetime' => 0,
+        'path' => '/',
+        'secure' => $secure,
+        'httponly' => true,
+        'samesite' => 'Lax'
+    ]);
+    
     session_start();
 }
+// Prevent page caching for dynamic session states
+header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
+header("Cache-Control: post-check=0, pre-check=0", false);
+header("Pragma: no-cache");
 ?>

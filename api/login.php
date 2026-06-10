@@ -30,6 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $_SESSION['username'] = $user['username'];
             $_SESSION['email'] = $user['email'];
             
+            session_write_close();
             header('Location: index.php');
             exit;
         } else {
