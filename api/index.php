@@ -1,3 +1,13 @@
+<?php
+require_once __DIR__ . '/config.php';
+/** @var PDO $pdo */
+try {
+    $stmt = $pdo->query("SELECT * FROM wisata");
+    $wisata_kawahijen = $stmt->fetchAll();
+} catch (PDOException $e) {
+    $wisata_kawahijen = [];
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,16 +21,6 @@
 </head>
 
 <body>
-    <?php
-    require_once __DIR__ . '/config.php';
-    /** @var PDO $pdo */
-    try {
-        $stmt = $pdo->query("SELECT * FROM wisata");
-        $wisata_kawahijen = $stmt->fetchAll();
-    } catch (PDOException $e) {
-        $wisata_kawahijen = [];
-    }
-    ?>
 
     <div class="container-fluid">
         <!-- NAVBAR -->
